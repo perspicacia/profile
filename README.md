@@ -14,7 +14,7 @@
   - [Titanic](https://perspicacia.github.io/titanic/) — 생존 요인 분석 · 예측 웹 앱
   - [Iris](https://perspicacia.github.io/iris/) — 품종 분석 · 실시간 예측 웹 앱
   - [PULSE SHIFT](https://perspicacia.github.io/pulse-shift-demo/) — 브라우저 리듬 게임
-  - [White Lion Game](https://github.com/perspicacia/white_lion_game) — 레트로 런게임
+  - [White Lion Game](https://perspicacia.github.io/white_lion_game/) — 레트로 런게임
 - **Career**: 경력 8곳을 최신순으로 한 줄씩 정리
 - **Training · Education**: 직무 교육과 학력
 - **Contact**: 이메일 연락처
