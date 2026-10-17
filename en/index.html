@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mijeong (Jayne) Jeong — Data Quality & Operations</title>
+  <meta name="description" content="Mijeong (Jayne) Jeong · Data quality, AI training data and operations professional" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=Oswald:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --paper: #f6f8fb;
+      --paper-2: #e9eef5;
+      --ink: #14213d;
+      --navy: #1b2d52;
+      --accent: #3d5a8a;
+      --muted: #5b6780;
+      --line: rgba(20, 33, 61, 0.12);
+      --sans: "Inter Tight", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      --display: "Oswald", "Pretendard", sans-serif;
+      --gutter: clamp(16px, 2.4vw, 32px);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Header ---------- */
+    header {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: var(--gutter);
+      padding: 26px var(--gutter);
+      border-bottom: 1px solid var(--line);
+    }
+    header nav { display: flex; flex-direction: column; font-size: 15px; line-height: 1.6; }
+    header nav a { width: fit-content; transition: opacity .2s; }
+    header nav a:hover { opacity: .5; }
+    .brand { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+    .lang { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; }
+    .lang a { padding: 3px 10px; border-radius: 999px; color: var(--muted); transition: color .2s; }
+    .lang a:hover { color: var(--ink); }
+    .lang a[aria-current="page"] { background: var(--navy); color: #fff; }
+    .logo {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 34px;
+      line-height: .95;
+      text-transform: uppercase;
+      text-align: right;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 62vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: clamp(64px, 12vh, 140px) var(--gutter) 48px;
+      text-align: center;
+    }
+    .hero h1 {
+      margin: 0;
+      font-weight: 400;
+      font-size: clamp(48px, 9.5vw, 156px);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      white-space: nowrap;
+    }
+    .hero h1 .dash { display: inline-block; margin: 0 .22em; }
+    .hero p {
+      max-width: 620px;
+      margin: 64px 0 0;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    /* ---------- Landscape band ---------- */
+    .band {
+      position: relative;
+      min-height: 560px;
+      color: #fff;
+      padding: 32px var(--gutter);
+      overflow: hidden;
+      background:
+        radial-gradient(60% 55% at 78% 30%, rgba(72, 96, 170, .35), transparent 70%),
+        radial-gradient(50% 45% at 18% 85%, rgba(98, 74, 160, .22), transparent 70%),
+        linear-gradient(180deg, #0b1430 0%, #0a1128 55%, #060b1c 100%);
+    }
+    .band canvas.stars {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+    .band::after {
+      /* soft horizon haze */
+      content: "";
+      position: absolute; inset: 0;
+      /* keeps text crisp: slightly darker behind the copy */
+      background:
+        linear-gradient(90deg, rgba(6, 11, 28, .35), transparent 45%),
+        linear-gradient(0deg, rgba(6, 11, 28, .45), transparent 35%);
+      pointer-events: none;
+    }
+    .band > *:not(canvas) { position: relative; z-index: 1; }
+    .band-top { display: flex; justify-content: space-between; gap: 24px; font-size: 15px; }
+    .band-top .place { display: flex; gap: 14px; }
+    .band-top .place small { display: block; margin-top: 18px; font-size: 15px; opacity: .9; }
+    .pin { width: 8px; margin-top: 4px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 120px;
+      border-top: 1px solid rgba(255,255,255,.4);
+    }
+    .stat { padding: 20px 20px 0 0; }
+    .stat b {
+      display: block;
+      font-weight: 400;
+      font-size: clamp(40px, 5vw, 72px);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .stat span { display: block; margin-top: 10px; font-size: 14px; opacity: .92; }
+
+    .scroll-cue {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      margin: 72px auto 0; width: fit-content; font-size: 14px;
+    }
+    .scroll-cue i { width: 1px; height: 18px; background: rgba(255,255,255,.8); }
+    .scroll-cue em {
+      width: 34px; height: 34px; border: 1.5px solid #fff; border-radius: 50%;
+      display: grid; place-items: center; font-style: normal;
+    }
+    .scroll-cue em::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #fff; }
+
+    /* ---------- Sections ---------- */
+    section.block {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--gutter);
+      padding: 72px var(--gutter);
+      border-bottom: 1px solid var(--line);
+    }
+    .label { font-size: 13px; color: var(--muted); }
+    .label b { display: block; color: var(--ink); font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+    h2 {
+      margin: 0 0 40px;
+      font-weight: 400;
+      font-size: clamp(30px, 3.6vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    /* Strengths */
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); }
+    .card { padding: 20px 20px 8px 0; }
+    .card .num { font-size: 13px; color: var(--accent); font-weight: 600; }
+    .card h3 { margin: 28px 0 10px; font-size: 19px; font-weight: 500; letter-spacing: -0.02em; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 var(--gutter); }
+    .skill-row { display: grid; grid-template-columns: 160px 1fr; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); }
+    .skill-row h4 { margin: 0; font-weight: 500; font-size: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; align-content: flex-start; }
+    .tags span {
+      padding: 3px 11px; border: 1px solid rgba(61, 90, 138, .22); color: var(--navy); border-radius: 999px;
+      font-size: 13px; background: var(--paper-2);
+      white-space: nowrap;
+    }
+
+    /* Portfolio */
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .project {
+      position: relative;
+      display: flex; flex-direction: column;
+      min-height: 300px;
+      padding: 24px;
+      border-radius: 4px;
+      color: #fff;
+      overflow: hidden;
+      background: var(--navy);
+      transition: transform .25s;
+    }
+    .project:hover { transform: translateY(-4px); }
+    .project::before {
+      content: ""; position: absolute; inset: 0; z-index: 0;
+      background: var(--glow);
+      opacity: .9;
+    }
+    .project > * { position: relative; z-index: 1; }
+    .project .meta { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
+    .project h3 {
+      margin: auto 0 10px;
+      padding-top: 56px;
+      font-weight: 400;
+      font-size: clamp(30px, 3.2vw, 44px);
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+    }
+    .project p { margin: 0 0 18px; font-size: 14px; opacity: .85; max-width: 46ch; }
+    .project .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .project .stack span { padding: 2px 10px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; font-size: 12px; }
+    .project .links { display: flex; gap: 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.22); font-size: 14px; }
+    .project .links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .project.featured { grid-column: 1 / -1; min-height: 320px; }
+    .project.featured p { max-width: 64ch; }
+    .p-spotify { --glow: radial-gradient(70% 90% at 90% 0%, rgba(40, 190, 120, .38), transparent 70%); }
+    .p-titanic { --glow: radial-gradient(90% 70% at 85% 10%, rgba(80, 130, 200, .55), transparent 70%); }
+    .p-iris    { --glow: radial-gradient(90% 70% at 85% 10%, rgba(140, 110, 210, .5), transparent 70%); }
+    .p-pulse   { --glow: radial-gradient(90% 70% at 85% 10%, rgba(60, 170, 200, .45), transparent 70%); }
+    .p-lion    { --glow: radial-gradient(90% 70% at 85% 10%, rgba(210, 160, 80, .4), transparent 70%); }
+
+    /* Career */
+    .rows { border-top: 1px solid var(--ink); }
+    .row {
+      display: grid;
+      grid-template-columns: 150px 1.1fr 1.3fr 2fr 70px;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      transition: background .2s, padding .2s;
+    }
+    .row:hover { background: var(--paper-2); padding-left: 10px; padding-right: 10px; }
+    .row .date { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+    .row .co { font-weight: 500; font-size: 17px; letter-spacing: -0.02em; }
+    .row .role { font-size: 14px; }
+    .row .what { color: var(--muted); font-size: 14px; }
+    .row .kind { justify-self: end; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+    .row .kind.data { color: var(--accent); font-weight: 600; }
+
+    /* Footer */
+    footer { padding: 96px var(--gutter) 32px; background: var(--navy); color: #fff; }
+    footer .label, footer .foot-meta { color: rgba(255,255,255,.65); }
+    footer .label b { color: #fff; }
+    footer .foot-meta { border-top-color: rgba(255,255,255,.18); }
+    footer .big {
+      display: block;
+      font-size: clamp(40px, 7.4vw, 120px);
+      font-weight: 400;
+      letter-spacing: -0.045em;
+      line-height: 1;
+      transition: opacity .2s;
+    }
+    footer .big:hover { opacity: .6; }
+    .foot-meta {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      margin-top: 80px; padding-top: 18px; border-top: 1px solid var(--line);
+      font-size: 13px; color: var(--muted);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1080px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .skills { grid-template-columns: 1fr; }
+      .projects { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 130px 1fr 1.4fr; }
+      .row .what { grid-column: 2 / -1; }
+      .row .kind { display: none; }
+    }
+    @media (max-width: 760px) {
+      header { grid-template-columns: 1fr 1fr; }
+      header .brand { grid-column: 1 / -1; grid-row: 1; flex-direction: row-reverse; justify-content: space-between; align-items: flex-start; }
+      header .logo { text-align: left; font-size: 28px; }
+      .hero { min-height: auto; }
+      .hero h1 { white-space: normal; }
+      .hero h1 .dash { display: block; margin: 0; font-size: .6em; line-height: 1.3; }
+      .hero p { margin-top: 40px; }
+      .hero p br { display: none; }
+      .band { min-height: 0; }
+      .band-top { flex-direction: column; }
+      .stats { grid-template-columns: repeat(2, 1fr); margin-top: 64px; }
+      .stat { padding-bottom: 20px; }
+      section.block { grid-template-columns: 1fr; padding: 56px var(--gutter); }
+      .cards { grid-template-columns: 1fr; }
+      .skill-row { grid-template-columns: 1fr; gap: 10px; }
+      .row { grid-template-columns: 1fr; gap: 4px; }
+      .row .what { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="home">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#career">Career</a>
+    </nav>
+    <nav>
+      <a href="#training">Training</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="brand">
+      <div class="lang" role="navigation" aria-label="Language">
+        <a href="../index.html" lang="ko">한국어</a>
+        <a href="index.html" lang="en" aria-current="page">English</a>
+      </div>
+      <a class="logo" href="#home">Jayne<br />Mijeong Jeong.</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Accuracy<span class="dash">—</span>Insight</h1>
+    <p>I'm Mijeong (Jayne) Jeong. With hands-on experience in data quality, AI training data
+      and store &amp; office operations, I keep data accurate — and use SQL, Tableau and AI agents to get work done faster.</p>
+  </section>
+
+  <section class="band" aria-label="Summary">
+    <canvas class="stars" aria-hidden="true"></canvas>
+    <div class="band-top">
+      <div class="place">
+        <svg class="pin" viewBox="0 0 8 20" fill="#fff" aria-hidden="true"><circle cx="4" cy="4" r="3.2"/><rect x="3.4" y="6" width="1.2" height="14"/></svg>
+        <div>
+          Data Quality &amp; Operations.
+          <small>Seoul, Republic of Korea<br />Korean · English</small>
+        </div>
+      </div>
+      <div>2026</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>4 yrs</b><span>Data quality · AI training data</span></div>
+      <div class="stat"><b>8</b><span>Companies (7 in Korea · 1 in the UK)</span></div>
+      <div class="stat"><b>2010–</b><span>Admin · operations · web · data</span></div>
+      <div class="stat"><b>EN</b><span>Worked in London · conversational English</span></div>
+    </div>
+
+    <a class="scroll-cue" href="#about">View Profile<i></i><em></em></a>
+  </section>
+
+  <section class="block" id="about">
+    <div class="label"><b>About</b>Key strengths</div>
+    <div>
+      <h2>I follow the standard, find the errors,<br />and explain with data.</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="num">01</div>
+          <h3>Data quality</h3>
+          <p>Audited Coupang product listings against guidelines; identified and reported errors</p>
+        </div>
+        <div class="card">
+          <div class="num">02</div>
+          <h3>AI training data</h3>
+          <p>Image, video and LiDAR annotation; wrote labeling guidelines and reviewed quality</p>
+        </div>
+        <div class="card">
+          <div class="num">03</div>
+          <h3>Operations &amp; admin</h3>
+          <p>SAP sales and payroll entry, store inventory and ordering, shift leading and staff training</p>
+        </div>
+        <div class="card">
+          <div class="num">04</div>
+          <h3>Analysis &amp; AI agents</h3>
+          <p>SQL, Python and Tableau analysis; built web apps and games with agentic AI workflows and coding agents</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="label"><b>Skills</b>What I work with</div>
+    <div class="skills">
+      <div class="skill-row">
+        <h4>Data &amp; Reporting</h4>
+        <div class="tags"><span>SQL</span><span>Tableau</span><span>Python · pandas</span><span>Data accuracy review</span><span>Catalog auditing</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>AI Data</h4>
+        <div class="tags"><span>CVAT</span><span>LiDAR labeling</span><span>Image &amp; video annotation</span><span>Labeling guidelines</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>Operations</h4>
+        <div class="tags"><span>Inventory &amp; ordering</span><span>Shift leadership</span><span>Staff onboarding &amp; training</span><span>Payroll data entry</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>Systems</h4>
+        <div class="tags"><span>SAP (ERP)</span><span>POS</span><span>Webflow</span><span>HTML</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>AI Agent</h4>
+        <div class="tags"><span>Agentic AI workflows</span><span>AI agent planning &amp; development</span><span>Building with Codex · Claude</span><span>Problem definition &amp; prompt design</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>Languages</h4>
+        <div class="tags"><span>Korean (native)</span><span>English (conversational)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="portfolio">
+    <div class="label"><b>Portfolio</b>Projects on GitHub</div>
+    <div>
+      <h2>Selected Projects</h2>
+      <div class="projects">
+        <article class="project featured p-spotify">
+          <div class="meta"><span>01 · BI Dashboard</span><span>Tableau</span></div>
+          <h3>Spotify Music Data BI</h3>
+          <p>Validated 114,000 Spotify tracks across 114 genres with Python, then built a three-level Tableau dashboard: KPIs → rankings → relationships</p>
+          <div class="stack"><span>Python</span><span>pandas</span><span>Tableau</span><span>KPI design</span></div>
+          <div class="links">
+            <a href="https://perspicacia.github.io/spotify-bi-portfolio/" target="_blank" rel="noopener">Live Demo ↗</a>
+            <a href="https://github.com/perspicacia/spotify-bi-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </article>
+        <article class="project p-titanic">
+          <div class="meta"><span>02 · Data Analysis</span><span>Web App</span></div>
+          <h3>Titanic</h3>
+          <p>Analyzes survival factors for 891 passengers; a web app to explore decision-tree predictions by changing conditions</p>
+          <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Chart.js</span></div>
+          <div class="links">
+            <a href="https://perspicacia.github.io/titanic/" target="_blank" rel="noopener">Live Demo ↗</a>
+            <a href="https://github.com/perspicacia/titanic" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </article>
+        <article class="project p-iris">
+          <div class="meta"><span>03 · Data Analysis</span><span>Web App</span></div>
+          <h3>Iris</h3>
+          <p>Visualizes species differences across four flower features and predicts the species live from your inputs</p>
+          <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Chart.js</span></div>
+          <div class="links">
+            <a href="https://perspicacia.github.io/iris/" target="_blank" rel="noopener">Live Demo ↗</a>
+            <a href="https://github.com/perspicacia/iris" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </article>
+        <article class="project p-pulse">
+          <div class="meta"><span>04 · Web Game</span><span>Built with AI agents</span></div>
+          <h3>PULSE SHIFT</h3>
+          <p>Browser rhythm game with three original tracks, 4-key and 6-key levels and hold notes — judging, scoring and saved records</p>
+          <div class="stack"><span>JavaScript</span><span>Canvas</span><span>Web Audio API</span><span>Node.js</span></div>
+          <div class="links">
+            <a href="https://perspicacia.github.io/pulse-shift-demo/" target="_blank" rel="noopener">Play ↗</a>
+            <a href="https://github.com/perspicacia/pulse-shift-demo" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </article>
+        <article class="project p-lion">
+          <div class="meta"><span>05 · Web Game</span><span>Retro Runner</span></div>
+          <h3>White Lion Game</h3>
+          <p>Retro runner where a white lion cub races through three stages — elemental attacks, checkpoints, a boss fight and touch controls</p>
+          <div class="stack"><span>JavaScript</span><span>Pixel Art</span><span>Mobile Touch</span></div>
+          <div class="links">
+            <a href="https://github.com/perspicacia/white_lion_game" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="career">
+    <div class="label"><b>Career</b>Most recent first</div>
+    <div>
+      <h2>Experience</h2>
+      <div class="rows">
+        <div class="row">
+          <span class="date">2025.03 – 2026.03</span>
+          <span class="co">Coupang</span>
+          <span class="role">CX Audit Associate · Ads &amp; Marketplace</span>
+          <span class="what">Audited product listings against guidelines; identified and reported product information errors</span>
+          <span class="kind data">Data</span>
+        </div>
+        <div class="row">
+          <span class="date">2024.04 – 2025.01</span>
+          <span class="co">Huray Positive</span>
+          <span class="role">Freelance Data Annotator · AI Vision</span>
+          <span class="what">Wrote labeling guidelines; annotated food images and reviewed annotation quality</span>
+          <span class="kind data">Data</span>
+        </div>
+        <div class="row">
+          <span class="date">2022.02 – 2023.09</span>
+          <span class="co">ThorDrive</span>
+          <span class="role">Data Processing Associate</span>
+          <span class="what">Labeled autonomous-driving LiDAR data in CVAT, managed dataset quality, helped build the company website in Webflow</span>
+          <span class="kind data">Data</span>
+        </div>
+        <div class="row">
+          <span class="date">2021.08 – 2021.12</span>
+          <span class="co">Getty Images Korea</span>
+          <span class="role">Freelance Data Annotator</span>
+          <span class="what">Classified apparel images by attributes; annotated entertainment video for AI training</span>
+          <span class="kind data">Data</span>
+        </div>
+        <div class="row">
+          <span class="date">2019.11 – 2020.07</span>
+          <span class="co">Costa Coffee, London</span>
+          <span class="role">Shift Leader / Barista</span>
+          <span class="what">Led shifts, handled POS and customer service in English, trained new staff</span>
+          <span class="kind">Ops</span>
+        </div>
+        <div class="row">
+          <span class="date">2018.02 – 2019.09</span>
+          <span class="co">Coffee Bean Korea</span>
+          <span class="role">Supervisor / Barista</span>
+          <span class="what">Managed ingredient inventory and orders, supervised store service, trained new staff</span>
+          <span class="kind">Ops</span>
+        </div>
+        <div class="row">
+          <span class="date">2012.03 – 2016.08</span>
+          <span class="co">Sarangnet</span>
+          <span class="role">Web Designer · Design Team</span>
+          <span class="what">Designed websites and product pages, maintained HTML/PHP, installed client software and trained users</span>
+          <span class="kind">Web</span>
+        </div>
+        <div class="row">
+          <span class="date">2010.06 – 2012.01</span>
+          <span class="co">Hansol Education</span>
+          <span class="role">Administrative Assistant · General Affairs</span>
+          <span class="what">Entered sales and accounting vouchers in SAP (ERP), kept revenue records, entered payroll data</span>
+          <span class="kind">Admin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="training">
+    <div class="label"><b>Training</b>Professional courses</div>
+    <div class="rows">
+      <div class="row">
+        <span class="date">2026.09 – 2026.12</span>
+        <span class="co">Salesforce AI &amp; Data Specialist</span>
+        <span class="role">Youth Employment Academy, Jung-gu</span>
+        <span class="what">Tableau &amp; Slack dashboards, agentic AI workflows, AI agent development — in progress</span>
+        <span class="kind data">Now</span>
+      </div>
+      <div class="row">
+        <span class="date">2026.07</span>
+        <span class="co">Tableau Online Bootcamp</span>
+        <span class="role">Salesforce · Cohort 32</span>
+        <span class="what">Visualization, calculated fields, table calculations, dashboard design</span>
+        <span class="kind"></span>
+      </div>
+      <div class="row">
+        <span class="date">2026.04 – 2026.07</span>
+        <span class="co">AX Data Analysis &amp; Visualization</span>
+        <span class="role">Dongdaemun Women’s Workforce Development Center</span>
+        <span class="what">Python fundamentals, data collection &amp; visualization, SQL database analysis</span>
+        <span class="kind"></span>
+      </div>
+      <div class="row">
+        <span class="date">2024.11 – 2025.01</span>
+        <span class="co">Data Literacy for DX</span>
+        <span class="role">The Joeun Academy</span>
+        <span class="what">pandas preprocessing, Matplotlib &amp; Seaborn, web scraping</span>
+        <span class="kind"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="label"><b>Education</b>Degrees &amp; courses</div>
+    <div class="rows">
+      <div class="row">
+        <span class="date">Expected 2027</span>
+        <span class="co">Korea National Open University</span>
+        <span class="role">English Language &amp; Literature · Enrolled</span>
+        <span class="what"></span><span class="kind"></span>
+      </div>
+      <div class="row">
+        <span class="date">2017</span>
+        <span class="co">Emerald Cultural Institute</span>
+        <span class="role">Ireland · Intensive English Course</span>
+        <span class="what"></span><span class="kind"></span>
+      </div>
+      <div class="row">
+        <span class="date">2010</span>
+        <span class="co">Yeungjin University</span>
+        <span class="role">Associate Degree in Visual Design</span>
+        <span class="what"></span><span class="kind"></span>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="label" style="margin-bottom:24px"><b>Contact</b>Let’s work together</div>
+    <a class="big" href="mailto:navybass4@gmail.com">navybass4@gmail.com ↗</a>
+    <div class="foot-meta">
+      <span>© 2026 Mijeong (Jayne) Jeong</span>
+      <span>Seoul, Republic of Korea</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Starfield for the summary band: static, seeded so it looks the same on every load.
+    (function () {
+      const canvas = document.querySelector(".band canvas.stars");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let seed = 7;
+      const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+
+      function draw() {
+        const dpr = window.devicePixelRatio || 1;
+        const w = canvas.offsetWidth, h = canvas.offsetHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        seed = 7;
+
+        const count = Math.round((w * h) / 2600);
+        for (let i = 0; i < count; i++) {
+          const x = rand() * w, y = rand() * h;
+          const big = rand() > 0.97;
+          const r = big ? 0.9 + rand() * 0.8 : 0.3 + rand() * 0.6;
+          const a = big ? 0.85 : 0.25 + rand() * 0.5;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fillStyle = rand() > 0.8 ? `rgba(190, 210, 255, ${a})` : `rgba(255, 255, 255, ${a})`;
+          if (big) { ctx.shadowColor = "rgba(200, 220, 255, .9)"; ctx.shadowBlur = 6; }
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+
+      draw();
+      let t;
+      window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(draw, 150); });
+    })();
+  </script>
+</body>
+</html>
