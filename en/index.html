@@ -222,9 +222,10 @@
     .project .links a:hover { text-decoration: underline; text-underline-offset: 3px; }
     .project.featured { grid-column: 1 / -1; min-height: 320px; }
     .project.featured p { max-width: 64ch; }
+    .project .contribution { font-size: 13px; }
+    .project .contribution strong { font-weight: 600; }
+    .p-hackathon { --glow: radial-gradient(70% 90% at 90% 0%, rgba(70, 150, 210, .42), transparent 70%); }
     .p-spotify { --glow: radial-gradient(70% 90% at 90% 0%, rgba(40, 190, 120, .38), transparent 70%); }
-    .p-titanic { --glow: radial-gradient(90% 70% at 85% 10%, rgba(80, 130, 200, .55), transparent 70%); }
-    .p-iris    { --glow: radial-gradient(90% 70% at 85% 10%, rgba(140, 110, 210, .5), transparent 70%); }
     .p-pulse   { --glow: radial-gradient(90% 70% at 85% 10%, rgba(60, 170, 200, .45), transparent 70%); }
     .p-lion    { --glow: radial-gradient(90% 70% at 85% 10%, rgba(210, 160, 80, .4), transparent 70%); }
 
@@ -409,12 +410,22 @@
   </section>
 
   <section class="block" id="portfolio">
-    <div class="label"><b>Portfolio</b>Projects on GitHub</div>
+    <div class="label"><b>Portfolio</b>Data analysis &amp; AI projects</div>
     <div>
       <h2>Selected Projects</h2>
       <div class="projects">
+        <article class="project featured p-hackathon">
+          <div class="meta"><span>01 · Tableau Hackathon</span><span>Solo project</span></div>
+          <h3>The Three-Minute Rule</h3>
+          <p>Are songs really getting shorter? A Tableau hackathon project comparing song duration by year, genre and duration range in Melon's domestic annual Top 100 charts from 2016 to 2025, highlighting changes and exceptions</p>
+          <p class="contribution"><strong>My role</strong> Owned the full project: topic selection, data collection and cleaning, analysis, and dashboard creation<br /><strong>AI support</strong> Used Claude to assist with data collection and Tableau calculated fields</p>
+          <div class="stack"><span>Tableau</span><span>Music data analysis</span><span>Data visualization</span><span>Claude</span></div>
+          <div class="links">
+            <a href="https://public.tableau.com/app/profile/.29783931/viz/3_17933236862090/3" target="_blank" rel="noopener">Tableau Public ↗</a>
+          </div>
+        </article>
         <article class="project featured p-spotify">
-          <div class="meta"><span>01 · BI Dashboard</span><span>Tableau</span></div>
+          <div class="meta"><span>02 · BI Dashboard</span><span>Tableau</span></div>
           <h3>Spotify Music Data BI</h3>
           <p>Validated 114,000 Spotify tracks across 114 genres with Python, then built a three-level Tableau dashboard: KPIs → rankings → relationships</p>
           <div class="stack"><span>Python</span><span>pandas</span><span>Tableau</span><span>KPI design</span></div>
@@ -423,28 +434,8 @@
             <a href="https://github.com/perspicacia/spotify-bi-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </article>
-        <article class="project p-titanic">
-          <div class="meta"><span>02 · Data Analysis</span><span>Web App</span></div>
-          <h3>Titanic</h3>
-          <p>Analyzes survival factors for 891 passengers; a web app to explore decision-tree predictions by changing conditions</p>
-          <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Chart.js</span></div>
-          <div class="links">
-            <a href="https://perspicacia.github.io/titanic/" target="_blank" rel="noopener">Live Demo ↗</a>
-            <a href="https://github.com/perspicacia/titanic" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-        <article class="project p-iris">
-          <div class="meta"><span>03 · Data Analysis</span><span>Web App</span></div>
-          <h3>Iris</h3>
-          <p>Visualizes species differences across four flower features and predicts the species live from your inputs</p>
-          <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Chart.js</span></div>
-          <div class="links">
-            <a href="https://perspicacia.github.io/iris/" target="_blank" rel="noopener">Live Demo ↗</a>
-            <a href="https://github.com/perspicacia/iris" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
         <article class="project p-pulse">
-          <div class="meta"><span>04 · Web Game</span><span>Built with AI agents</span></div>
+          <div class="meta"><span>03 · Web Game</span><span>Built with AI agents</span></div>
           <h3>PULSE SHIFT</h3>
           <p>Browser rhythm game with three original tracks, 4-key and 6-key levels and hold notes — judging, scoring and saved records</p>
           <div class="stack"><span>JavaScript</span><span>Canvas</span><span>Web Audio API</span><span>Node.js</span></div>
@@ -454,7 +445,7 @@
           </div>
         </article>
         <article class="project p-lion">
-          <div class="meta"><span>05 · Web Game</span><span>Retro Runner</span></div>
+          <div class="meta"><span>04 · Web Game</span><span>Retro Runner</span></div>
           <h3>White Lion Game</h3>
           <p>Retro runner where a white lion cub races through three stages — elemental attacks, checkpoints, a boss fight and touch controls</p>
           <div class="stack"><span>JavaScript</span><span>Pixel Art</span><span>Mobile Touch</span></div>

@@ -222,9 +222,10 @@
     .project .links a:hover { text-decoration: underline; text-underline-offset: 3px; }
     .project.featured { grid-column: 1 / -1; min-height: 320px; }
     .project.featured p { max-width: 64ch; }
+    .project .contribution { font-size: 13px; }
+    .project .contribution strong { font-weight: 600; }
+    .p-hackathon { --glow: radial-gradient(70% 90% at 90% 0%, rgba(70, 150, 210, .42), transparent 70%); }
     .p-spotify { --glow: radial-gradient(70% 90% at 90% 0%, rgba(40, 190, 120, .38), transparent 70%); }
-    .p-titanic { --glow: radial-gradient(90% 70% at 85% 10%, rgba(80, 130, 200, .55), transparent 70%); }
-    .p-iris    { --glow: radial-gradient(90% 70% at 85% 10%, rgba(140, 110, 210, .5), transparent 70%); }
     .p-pulse   { --glow: radial-gradient(90% 70% at 85% 10%, rgba(60, 170, 200, .45), transparent 70%); }
     .p-lion    { --glow: radial-gradient(90% 70% at 85% 10%, rgba(210, 160, 80, .4), transparent 70%); }
 
@@ -409,12 +410,22 @@
   </section>
 
   <section class="block" id="portfolio">
-    <div class="label"><b>Portfolio</b>GitHub 프로젝트</div>
+    <div class="label"><b>Portfolio</b>분석 · AI 활용 프로젝트</div>
     <div>
       <h2>Selected Projects</h2>
       <div class="projects">
+        <article class="project featured p-hackathon">
+          <div class="meta"><span>01 · Tableau Hackathon</span><span>개인 프로젝트</span></div>
+          <h3>3분의 법칙</h3>
+          <p>노래는 정말 짧아졌을까? 2016~2025년 멜론 국내 연간 Top 100 수록곡의 길이를 연도·장르·길이 구간별로 비교하고, 변화와 예외 사례를 Tableau 대시보드로 전달한 해커톤 프로젝트</p>
+          <p class="contribution"><strong>담당</strong> 주제 선정부터 데이터 수집·정제, 분석, 대시보드 제작까지 전 과정 수행<br /><strong>AI 활용</strong> 데이터 수집과 Tableau 계산식 작성에 Claude 활용</p>
+          <div class="stack"><span>Tableau</span><span>음악 데이터 분석</span><span>데이터 시각화</span><span>Claude</span></div>
+          <div class="links">
+            <a href="https://public.tableau.com/app/profile/.29783931/viz/3_17933236862090/3" target="_blank" rel="noopener">Tableau Public ↗</a>
+          </div>
+        </article>
         <article class="project featured p-spotify">
-          <div class="meta"><span>01 · BI Dashboard</span><span>Tableau</span></div>
+          <div class="meta"><span>02 · BI Dashboard</span><span>Tableau</span></div>
           <h3>Spotify Music Data BI</h3>
           <p>Spotify 곡 114,000건 · 114개 장르를 Python으로 검증하고, KPI → 순위 → 관계 3단 구조의 Tableau 대시보드로 시각화한 BI 포트폴리오</p>
           <div class="stack"><span>Python</span><span>pandas</span><span>Tableau</span><span>KPI 설계</span></div>
@@ -423,28 +434,8 @@
             <a href="https://github.com/perspicacia/spotify-bi-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </article>
-        <article class="project p-titanic">
-          <div class="meta"><span>02 · Data Analysis</span><span>Web App</span></div>
-          <h3>Titanic</h3>
-          <p>승객 891명 데이터로 생존 요인을 분석하고, 의사결정트리 예측 결과를 조건을 바꿔 보며 확인하는 웹 앱</p>
-          <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Chart.js</span></div>
-          <div class="links">
-            <a href="https://perspicacia.github.io/titanic/" target="_blank" rel="noopener">Live Demo ↗</a>
-            <a href="https://github.com/perspicacia/titanic" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-        <article class="project p-iris">
-          <div class="meta"><span>03 · Data Analysis</span><span>Web App</span></div>
-          <h3>Iris</h3>
-          <p>붓꽃 4가지 특성으로 품종별 차이를 시각화하고, 입력한 수치로 품종을 실시간 예측하는 웹 앱</p>
-          <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Chart.js</span></div>
-          <div class="links">
-            <a href="https://perspicacia.github.io/iris/" target="_blank" rel="noopener">Live Demo ↗</a>
-            <a href="https://github.com/perspicacia/iris" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
         <article class="project p-pulse">
-          <div class="meta"><span>04 · Web Game</span><span>AI Agent 협업</span></div>
+          <div class="meta"><span>03 · Web Game</span><span>AI Agent 협업</span></div>
           <h3>PULSE SHIFT</h3>
           <p>오리지널 음악 3곡, 4키·6키 레벨과 롱노트를 갖춘 브라우저 리듬 게임 — 판정 · 점수 · 기록 저장 구현</p>
           <div class="stack"><span>JavaScript</span><span>Canvas</span><span>Web Audio API</span><span>Node.js</span></div>
@@ -454,7 +445,7 @@
           </div>
         </article>
         <article class="project p-lion">
-          <div class="meta"><span>05 · Web Game</span><span>Retro Runner</span></div>
+          <div class="meta"><span>04 · Web Game</span><span>Retro Runner</span></div>
           <h3>White Lion Game</h3>
           <p>아기 백사자가 3개 스테이지를 달리는 레트로 런게임 — 속성 공격, 체크포인트, 보스전, 모바일 터치 지원</p>
           <div class="stack"><span>JavaScript</span><span>Pixel Art</span><span>Mobile Touch</span></div>
